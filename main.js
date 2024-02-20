@@ -21,6 +21,24 @@ function rejimOzgartir() {
         tugma.style.borderRadius = "10px";
     }
 }
+// Asosiy ekran narsalarni ochish funktsiyasi
+function ochishNarsalar() {
+    // Bu funksiya sizning asosiy narsalarni ochish loyihangizni amalga oshiradi
+    // Masalan:
+    document.getElementById("asosiy-narsalar").style.display = "block";
+}
+
+// Foydalanuvchidan parolni so'rang
+var parol = prompt("Iltimos, parolni kiriting:");
+
+// Agar parol to'g'ri bo'lsa, asosiy narsalarni ochish funktsiyasini chaqiring
+if (parol === "sizningparolingiz") {
+    ochishNarsalar();
+} else {
+    // Aks holda, foydalanuvchiga kirishni rad etish xabari chiqariladi
+    alert("Parol noto'g'ri. Kirishga ruxsat bermaymiz!");
+}
+
 
 // Displaying the current value
 let displayValue = '';
