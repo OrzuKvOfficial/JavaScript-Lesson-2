@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body{
+            background-color: rgb(0, 0, 0);
+        }
+        .calculator {
+            margin-top: 50px;
+            width: 400px;
+            border: 1px solid #ccc;
+            border-radius: 10px; /* Radiusni o'zgartirish */
+            padding: 20px;
+            background-color: #f8f9fa; /* Asosiy fon rangi */
+        }
+        .btn {
+            font-size: 20px; /* Tugma matnini katta qilish */
+        }
+        .btn-primary {
+            background-color: #007bff !important; /* Asosiy tugma rangi */
+            border-color: #007bff !important; /* Asosiy tugma chegarasi rangi */
+        }
+        .btn-primary:hover {
+            background-color: #0056b3 !important; /* Tugma ustiga o'tganda rangi */
+            border-color: #0056b3 !important; /* Tugma ustiga o'tganda chegarasi rangi */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="calculator mx-auto">
+            <input type="text" id="display" class="form-control mb-2" readonly>
+            <div class="btn-group d-flex">
+                <button onclick="clearDisplay()" class="btn btn-secondary w-25">C</button>
+                <button onclick="appendToDisplay('7')" class="btn btn-secondary w-25">7</button>
+                <button onclick="appendToDisplay('8')" class="btn btn-secondary w-25">8</button>
+                <button onclick="appendToDisplay('9')" class="btn btn-secondary w-25">9</button>
+            </div>
+            <div class="btn-group d-flex">
+                <button onclick="appendToDisplay('4')" class="btn btn-secondary w-25">4</button>
+                <button onclick="appendToDisplay('5')" class="btn btn-secondary w-25">5</button>
+                <button onclick="appendToDisplay('6')" class="btn btn-secondary w-25">6</button>
+                <button onclick="appendToDisplay('-')" class="btn btn-secondary w-25">-</button>
+            </div>
+            <div class="btn-group d-flex">
+                <button onclick="appendToDisplay('1')" class="btn btn-secondary w-25">1</button>
+                <button onclick="appendToDisplay('2')" class="btn btn-secondary w-25">2</button>
+                <button onclick="appendToDisplay('3')" class="btn btn-secondary w-25">3</button>
+                <button onclick="appendToDisplay('+')" class="btn btn-secondary w-25">+</button>
+            </div>
+            <div class="btn-group d-flex">
+                <button onclick="appendToDisplay('0')" class="btn btn-secondary w-50">0</button>
+                <button onclick="appendToDisplay('.')" class="btn btn-secondary w-25">.</button>
+                <button onclick="calculateResult()" class="btn btn-primary w-25">=</button>
+            </div>
+            <div class="btn-group d-flex">
+                <button onclick="appendToDisplay('*')" class="btn btn-secondary w-25">*</button>
+                <button onclick="appendToDisplay('/')" class="btn btn-secondary w-25">/</button>
+                <!-- Yangi tugmalar qo'shish -->
+                <button onclick="square()" class="btn btn-secondary w-25">x^2</button>
+                <button onclick="sqrt()" class="btn btn-secondary w-25">√</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        let displayValue = '';
+
+        function appendToDisplay(value) {
+            displayValue += value;
+            document.getElementById('display').value = displayValue;
+        }
+
+        function clearDisplay() {
+            displayValue = '';
+            document.getElementById('display').value = displayValue;
+        }
+
+        function calculateResult() {
+            let result;
+            try {
+                result = eval(displayValue);
+                if (result === Infinity) {
+                    result = 'Error: Division by zero';
+                }
+            } catch (error) {
+                result = 'Error';
+            }
+            document.getElementById('display').value = result;
+            displayValue = '';
+        }
+
+        // Yangi funksiyalar
+        function square() {
+            displayValue = Math.pow(parseFloat(displayValue), 2);
+            document.getElementById('display').value = displayValue;
+        }
+
+        function sqrt() {
+            displayValue = Math.sqrt(parseFloat(displayValue));
+            document.getElementById('display').value = displayValue;
+        }
+    </script>
+</body>
+</html>
